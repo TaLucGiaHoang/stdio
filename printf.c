@@ -4,18 +4,6 @@
  *  Created on: Oct 6, 2020
  *      Author:
  */
-#include <stdarg.h>	/* va_list, va_arg() */
-#include <stdint.h>
-
-static int outbyte(int c)
-{
-// SiFive HiFive1 Revb1 uart0 registers
-#define uart0_txdata    (*(volatile uint32_t*)(0x10013000))
-#define UART_TXFULL             (1 << 31)
-    while ((uart0_txdata & UART_TXFULL) != 0) { }
-    uart0_txdata = c;
-    return 0;
-}
 
 /*
 	putchar is the only external dependency for this file,
